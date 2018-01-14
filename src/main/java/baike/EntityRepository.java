@@ -1,4 +1,4 @@
-package Baike;
+package baike;
 
 /**
  * @Description:
@@ -7,13 +7,14 @@ package Baike;
  */
 
 import org.springframework.data.neo4j.repository.Neo4jRepository;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EntityRepository extends Neo4jRepository<Entity, Long> {
 
-    //List<Person> findByName(String name);
-
+    //List<Entity> findByName(String name);
+    @Nullable
     Entity findByName(String name);
 
 

@@ -1,4 +1,4 @@
-package Baike;
+package baike;
 
 /**
  * @Description:

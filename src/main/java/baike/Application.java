@@ -1,4 +1,4 @@
-package Baike;
+package baike;
 /**
  * @Description:
  * @Author: J.Y.Zhang
@@ -34,7 +34,7 @@ public class Application {
 
             entityRepository.deleteAll();
 
-            ArrayList<String> triples = IOTool.readLinesFromFile("C:\\Users\\yaoleo\\IdeaProjects\\neo4jtest\\src\\main\\resources\\NT.nt");
+            ArrayList<String> triples = IOTool.readLinesFromFile("C:\\Users\\yaoleo\\IdeaProjects\\neo4jtest\\src\\main\\resources\\NT_triplets.nt");
             log.info(String.valueOf(triples.size()));
             int count = 0;
             for(String triple :triples){
@@ -52,7 +52,7 @@ public class Application {
 
                 Entity ss = new Entity(objectname);
 
-                //List<Person> issaved = personRepository.findByName(objectname);
+                //List<Entity> issaved = personRepository.findByName(objectname);
                 Entity issaved = entityRepository.findByName(objectname);
                 if(null == issaved ){
                     count ++;
@@ -60,14 +60,14 @@ public class Application {
                     entityRepository.save(ss);
                 }else {
                     Map<String, String> savedproperties = issaved.getProperties();
-                    System.out.println(savedproperties);
+                    //System.out.println(savedproperties);
                     entityRepository.delete(issaved);
                     ss.setProperties(savedproperties);
                     //personRepository.save(ss);
                     //Map<String, String> property = new HashMap<>();
                     //property.put(propertyname,subjectname);
                     ss.setProperties(propertyname,subjectname);
-                    System.out.println("sss"+ss.getProperties());
+                    //System.out.println("sss"+ss.getProperties());
                     entityRepository.save(ss);
                 }
 
@@ -78,9 +78,9 @@ public class Application {
             /*properties.put("saaa","ddd");
             roy.setProperties(properties);
             personRepository.save(greg);
-            Person issaved = personRepository.findByName("Greg");
+            Entity issaved = personRepository.findByName("Greg");
             personRepository.save(roy);
-            Person issaved2 = personRepository.findByName("Greg");
+            Entity issaved2 = personRepository.findByName("Greg");
             System.out.println(issaved);
             log.info("Before linking up with Neo4j...");
 
